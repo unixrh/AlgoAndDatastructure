@@ -1,3 +1,6 @@
+/* 题目：给定二叉树的前序和中序，重建整棵树
+ * 解法：根据前序找到根，然后在中序将数组分为左右子树，递归
+ */
 #include <iostream>
 #include <vector>
 #include "data_struct.h"
