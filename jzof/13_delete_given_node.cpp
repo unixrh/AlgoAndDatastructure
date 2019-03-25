@@ -20,8 +20,8 @@ int main(int argc, char* argv[]) {
     cout << "usage: " << argv[0] << " num delpos" << endl;
     exit(1);
   }
-  ListNode *root = new ListNode(-1);
-  ListNode *tmp = root;
+  ListNode *head = new ListNode(-1);
+  ListNode *tmp = head;
   int num = atoi(argv[1]);
   int delpos = atoi(argv[2]);
   ListNode *target = NULL;
@@ -32,8 +32,8 @@ int main(int argc, char* argv[]) {
     if(i == delpos)
       target = n; 
   }
-  CommonUtils::printList(root);
+  CommonUtils::printList(head);
   deleteNode(target);
-  CommonUtils::printList(root);
-  delete root;
+  CommonUtils::printList(head);
+  delete head;
 }
