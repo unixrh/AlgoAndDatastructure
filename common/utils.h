@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue>
 #include <time.h>
 #include "data_struct_def.h"
 
@@ -29,5 +30,46 @@ class CommonUtils {
       }
       cout << "NULL" << endl;
     }
-};
 
+    static TreeNode* buildTree(int l, int r) {
+      if(l > r) return NULL;
+      int mid = l + ((r-l) >> 1);
+      TreeNode* root = new TreeNode(mid);
+      root->left = buildTree(l, mid-1);
+      root->right = buildTree(mid+1, r);
+      return root;
+    }
+
+    static void printTreePreorder(TreeNode* root) {
+      if(root){
+        cout << root->val << " ";
+        printTreePreorder(root->left);
+        printTreePreorder(root->right);
+      }
+    }
+
+    static void printTreeInorder(TreeNode* root) {
+      if(root){
+        printTreeInorder(root->left);
+        cout << root->val << " ";
+        printTreeInorder(root->right);
+      }
+    }
+
+    static void printTreeByLayer(TreeNode* root) {
+      queue<TreeNode*> q;
+      q.push(root);
+      while(!q.empty()) {
+        TreeNode* tmp = q.front();
+        q.pop();
+        if(!tmp) {
+          cout << " N ";
+          continue;
+        }
+        cout << " " << tmp->val << " ";
+        q.push(tmp->left);
+        q.push(tmp->right);
+      }
+      cout << endl;
+    }
+};
