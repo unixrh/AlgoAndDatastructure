@@ -2,3 +2,4 @@ a.out
 a.out*
 core*
 .DS_Store
+*.o
