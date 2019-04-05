@@ -20,15 +20,11 @@ class MinStack extends Stack {
       echo "stack full \n";
       return;
     }
-    $top = PHP_INT_MAX;
-    if($this->size > 0) {
-      $top = $this->min();
-    }
+    $top = $this->min();
     if($item < $top)
       $this->minSt->push($item);
     else 
       $this->minSt->push($top);
-    $this->stackArr[] = $item;
     $this->size++;
   }
 
@@ -60,7 +56,6 @@ while(!$st->isEmpty()) {
   $st->pop();
 }
 echo "cur size: " . $st->size() . "\n";
-echo "cur limit: " . $st->limit() . "\n";
 echo "====================\n";
 for($i = 8; $i < NUM+3; $i++) {
   $st->push($i);

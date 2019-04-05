@@ -34,7 +34,7 @@ class Stack {
 
   public function top() {
     if($this->size == 0) {
-      echo "stack empty \n";
+      return PHP_INT_MAX;
     } else {
       return $this->stackArr[$this->size - 1];
     }
