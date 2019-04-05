@@ -1,7 +1,7 @@
 <?php
 class Stack {
-  private $limit;
-  private $stackArr = array();
+  protected $limit;
+  protected $stackArr = array();
   protected $size = 0;
   public function __construct($limit) {
     $this->limit = $limit;
@@ -39,18 +39,5 @@ class Stack {
   public function isEmpty() {
     return !$this->size > 0;
   }
-}
-
-// test
-define(NUM, 5);
-$st = new Stack(NUM);
-var_dump($st);
-$st->pop();
-echo $st->top() . "\n";
-for($i = 1; $i < NUM+3; $i++)
-  $st->push($i);
-for($i = 1; $i < NUM+3; $i++) {
-  echo $st->top() . "\n";
-  $st->pop();
 }
 ?>
