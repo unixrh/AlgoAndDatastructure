@@ -1,7 +1,7 @@
 <?php
 class Stack {
-  protected $limit;
   protected $stackArr = array();
+  protected $limit;
   protected $size = 0;
   public function __construct($limit) {
     $this->limit = $limit;
@@ -11,9 +11,13 @@ class Stack {
     return $this->size;
   }
 
+  public function limit(){
+    return $this->limit;
+  }
+
   public function push($item) {
     if($this->size < $this->limit) {
-      $this->stackArr[] = $item;
+      $this->stackArr[$this->size] = $item;
       $this->size++;
     } else {
       echo "stack full \n";
@@ -37,7 +41,7 @@ class Stack {
   }
 
   public function isEmpty() {
-    return !$this->size > 0;
+    return $this->size <= 0;
   }
 }
 ?>
