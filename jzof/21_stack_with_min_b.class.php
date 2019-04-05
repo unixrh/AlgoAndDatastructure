@@ -13,7 +13,7 @@ class MinStack {
   }
 
   public function size() {
-    $this->dataSt->size();
+    return $this->dataSt->size();
   }
 
   public function pop() {
