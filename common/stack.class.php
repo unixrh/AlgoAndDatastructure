@@ -12,7 +12,7 @@ class Stack {
   }
 
   public function push($item) {
-    if($this->size < $this->limt) {
+    if($this->size < $this->limit) {
       $this->stackArr[] = $item;
       $this->size++;
     } else {
@@ -45,12 +45,12 @@ class Stack {
 define(NUM, 5);
 $st = new Stack(NUM);
 var_dump($st);
-$st.pop();
-echo $st.top() . "\n";
+$st->pop();
+echo $st->top() . "\n";
 for($i = 1; $i < NUM+3; $i++)
-  $st.push($i);
+  $st->push($i);
 for($i = 1; $i < NUM+3; $i++) {
-  echo $st.top() . "\n";
-  $st.pop();
+  echo $st->top() . "\n";
+  $st->pop();
 }
 ?>
