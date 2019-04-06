@@ -16,38 +16,44 @@ typedef struct listnode {
 
 typedef struct {
   int size;
-  QueNode head; // head->next为第一个元素
+  QueNode head; // head 为第一个元素
   QueNode tail; // tail 为最后一个元素
 } Queue;
 
-Queue* createQueue(){
+QueNode newNode(TreeNode* val) {
+  QueNode tmp = (QueNode)(malloc(sizeof(ListNode)));
+  tmp->val = val;
+  return tmp;
+}
+
+Queue* newQueue(){
   Queue *q = (Queue*)malloc(sizeof(Queue));
-  q->head = (ListNode*)(malloc(sizeof(ListNode)));
-  q->tail = q->head;
+  q->head = q->tail = NULL;
   q->size = 0;
 }
 
 void enqueue(Queue* q, TreeNode* val) {
   q->size++;
-  ListNode* tmp = (ListNode*)(malloc(sizeof(ListNode)));
-  tmp->val = val;
-  q->tail->next = tmp;
-  q->tail = tmp;
-}
-
-void dequeue(Queue* q) {
-  assert(q->head != NULL);
-  (q->size)--;
-  ListNode* tmp = q->head->next;
-  if(tmp) {
-    q->head->next = tmp->next;
-    free(tmp);
+  QueNode tmp = newNode(val);
+  if(q->head == NULL) {
+    q->head = q->tail = tmp;
+  } else {
+    q->tail->next = tmp;
+    q->tail = tmp;
   }
 }
 
-ListNode* front(Queue* q){
+void dequeue(Queue* q) {
+  assert(q->size > 0);
+  (q->size)--;
+  QueNode tmp = q->head;
+  q->head = tmp->next;
+  free(tmp);
+}
+
+QueNode front(Queue* q){
   if(q->head != NULL) {
-    return q->head->next;
+    return q->head;
   }
   return NULL;
 }
@@ -71,27 +77,27 @@ void printTreeInorder(TreeNode* root) {
 }
 
 void printTreeByLevel(TreeNode* root) {
-  Queue *q = createQueue();
+  Queue *q = newQueue();
   enqueue(q, root);
   while((q->size) > 0) {
-    ListNode* tmp = front(q);
-    TreeNode* x = tmp->val;
+    // printf("\nq->size: %d\n", q->size);
+    TreeNode* x = front(q)->val;
+    dequeue(q);
     printf("%d ", x->val);
     if(x->left)
       enqueue(q, x->left);
     if(x->right)
       enqueue(q, x->right);
-    dequeue(q); // dequeue必须放在最后，否则dequeue将内存释放了就么得打印了
   }
 }
 
 int main(){
   TreeNode* root = buildTree(1, 16);
-  printf("inorder : ");
-  printTreeInorder(root);
-  printf("\n");
   printf("by level: ");
   printTreeByLevel(root);
+  printf("\n");
+  printf("inorder : ");
+  printTreeInorder(root);
   printf("\n");
   return 0;
 }
