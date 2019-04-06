@@ -16,8 +16,8 @@ typedef struct listnode {
 
 typedef struct {
   int size;
-  QueNode head;
-  QueNode tail;
+  QueNode head; // head->next为第一个元素
+  QueNode tail; // tail 为最后一个元素
 } Queue;
 
 Queue* createQueue(){
@@ -81,7 +81,7 @@ void printTreeByLevel(TreeNode* root) {
       enqueue(q, x->left);
     if(x->right)
       enqueue(q, x->right);
-    dequeue(q); // 和其他的不同这个地方必须放在最后，否则dequeue将内存释放了就么得打印了
+    dequeue(q); // dequeue必须放在最后，否则dequeue将内存释放了就么得打印了
   }
 }
 
