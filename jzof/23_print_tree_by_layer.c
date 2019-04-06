@@ -9,10 +9,10 @@ typedef struct treenode {
   struct treenode *left, *right;
 } TreeNode;
 
-typedef struct listnode {
+typedef struct quenode {
   TreeNode* val;
-  struct listnode* next;
-} ListNode, *QueNode;
+  struct quenode* next;
+} *QueNode;
 
 typedef struct {
   int size;
@@ -21,7 +21,7 @@ typedef struct {
 } Queue;
 
 QueNode newNode(TreeNode* val) {
-  QueNode tmp = (QueNode)(malloc(sizeof(ListNode)));
+  QueNode tmp = (QueNode)(malloc(sizeof(struct quenode)));
   tmp->val = val;
   return tmp;
 }
