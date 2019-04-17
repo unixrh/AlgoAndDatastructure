@@ -94,15 +94,15 @@ void printTreeByLevel(TreeNode* root) {
       nextLast = x->right;
     }
     if(x == curLast) {
-      printf("%d ", x->val);
+      printf("\n");
       curLast = nextLast;
     }
   }
 }
 
 int main(){
-  TreeNode* root = buildTree(1, 16);
-  printf("by level: ");
+  TreeNode* root = buildTree(1, 15);
+  printf("by level: \n");
   printTreeByLevel(root);
   printf("\n");
   printf("inorder : ");
