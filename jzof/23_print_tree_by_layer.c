@@ -78,16 +78,25 @@ void printTreeInorder(TreeNode* root) {
 
 void printTreeByLevel(TreeNode* root) {
   Queue *q = newQueue();
+  TreeNode *curLast  = root;
+  TreeNode *nextLast = root;
   enqueue(q, root);
   while((q->size) > 0) {
-    // printf("\nq->size: %d\n", q->size);
     TreeNode* x = front(q)->val;
     dequeue(q);
     printf("%d ", x->val);
-    if(x->left)
+    if(x->left) {
       enqueue(q, x->left);
-    if(x->right)
+      nextLast = x->left;
+    }
+    if(x->right) {
       enqueue(q, x->right);
+      nextLast = x->right;
+    }
+    if(x == curLast) {
+      printf("%d ", x->val);
+      curLast = nextLast;
+    }
   }
 }
 
